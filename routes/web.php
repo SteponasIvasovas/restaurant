@@ -24,4 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){
   Route::get('/', 'AdminController@index')->name('admin');
   Route::resource('/menu', 'MenuController');
+  Route::resource('/dish', 'DishController');
 });

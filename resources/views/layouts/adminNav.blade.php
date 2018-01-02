@@ -66,7 +66,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href=""><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
                             <li><a href="{{route('menu.index')}}"><span class="glyphicon glyphicon-plane"></span> Menu</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-cloud"></span> Dish</a></li>
+                            <li><a href="{{route('dish.index')}}"><span class="glyphicon glyphicon-cloud"></span> Dish</a></li>
 
                             <!-- Dropdown-->
                             <li class="panel panel-default" id="dropdown">

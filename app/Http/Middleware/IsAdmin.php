@@ -19,9 +19,9 @@ class IsAdmin
       //Auth::user() - patikrina ar prisilogines useris
       //Auth::user()-> == 1 - patikrina ar useris yra adminas (duomenu bazes laukelis admin)
 
-      // if (Auth::user() && Auth::user()->admin == 1){
+      if (Auth::user() && Auth::user()->admin == 1){
         return $next($request);
-      // }
-      // return redirect('/');
+      }
+      return redirect('/');
     }
 }
