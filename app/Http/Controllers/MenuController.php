@@ -26,7 +26,9 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menu.create');
+      //tikrinimas ar vartotojas yra adminas ar useris
+      $this->authorize('create', Menu::class);
+      return view('admin.menu.create');
     }
 
     /**
@@ -37,7 +39,8 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+      Menu::create($request->all());
+      return redirect('admin/menu');
     }
 
     /**
@@ -59,7 +62,9 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-
+      $this->authorize('update', Menu::class);
+      //compact('menu') == ['menu' => $menu']
+      return view('admin.menu.edit', compact('menu'));
     }
 
     /**
@@ -69,9 +74,11 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(StoreMenuRequest $request, Menu $menu)
     {
-        //
+      $menu->update($request->all());
+      // return redirect('admin.menu.edit', compact('menu'));
+      return redirect('admin/menu')->with(['message' => 'Menu successfuly edited']);
     }
 
     /**
@@ -82,6 +89,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+      $this->authorize('delete', Menu::class);
+      $menu->delete();
+      return redirect('admin/menu');
     }
 }

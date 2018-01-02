@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="col-md-8">
+  @if (session('message'))
+    <p class="alert alert-info">{{ session('message') }}</p>
+  @endif
   <ul class="list-group">
     @foreach($menus as $menu)
     <li class="list-group-item clearfix">
@@ -9,8 +12,14 @@
         <span>{{ $menu->title }}</span>
       </div>
       <div class="pull-right">
-        <a class="btn btn-primary" href="{{route('menu.edit', $menu->id)}}">Edit</a>
-        <a class="btn btn-danger" href="{{route('menu.destroy', $menu->id)}}">Delete</a>
+        <a class="btn btn-primary" href="{{route('menu.edit', $menu)}}">Edit</a>
+        <form action="{{ route('menu.destroy', $menu) }}" method="POST"
+         style="display: inline"
+         onsubmit="return confirm('Are you sure?');">
+          {{ csrf_field() }}
+          {{ method_field('delete') }}
+          <button class="btn btn-danger pull-right">Delete</button>
+        </form>
       </div>
     </li>
     @endforeach

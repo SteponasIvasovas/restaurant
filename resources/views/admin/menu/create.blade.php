@@ -7,7 +7,7 @@
   <div class="form-group">
     <label for="menu_title" class="control-label col-sm-2">Title</label>
     <div class="col-sm-2">
-      <input id="menu-title" class="form-control" type="text" name="menu_title" value="">
+      <input id="menu-title" class="form-control" type="text" name="title" value="">
     </div>
   </div>
   <div class="form-group">

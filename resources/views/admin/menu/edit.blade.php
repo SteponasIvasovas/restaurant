@@ -1,13 +1,14 @@
 @extends ('layouts.admin')
 
 @section('content')
-<form class="" action="{{route('menu.store')}}" method="post">
+<form class="" action="{{route('menu.update', $menu)}}" method="post">
   <!-- apsauga -->
   {{ csrf_field() }}
+  {{ method_field('put') }}
   <div class="form-group">
     <label for="menu_title" class="control-label col-sm-2">Title</label>
     <div class="col-sm-2">
-      <input id="menu-title" class="form-control" type="text" name="menu_title" value="{{ $menu->title }}">
+      <input id="menu-title" class="form-control" type="text" name="title" value="{{ $menu->title }}">
     </div>
   </div>
   <div class="form-group">
