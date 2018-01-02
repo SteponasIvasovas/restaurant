@@ -1,11 +1,11 @@
 @extends ('layouts.admin')
 
 @section('content')
-<form class="form-horiztal" action="{{route('menu.store')}}" method="post">
+<form class="" action="{{route('menu.store')}}" method="post">
   <!-- apsauga -->
   {{ csrf_field() }}
   <div class="form-group">
-    <label for="menu_title" class="control-label col-sm-2">title</label>
+    <label for="menu_title" class="control-label col-sm-2">Title</label>
     <div class="col-sm-2">
       <input id="menu-title" class="form-control" type="text" name="menu_title" value="">
     </div>
