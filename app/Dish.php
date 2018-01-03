@@ -13,4 +13,8 @@ class Dish extends Model
     'price',
     'menu_id'
   ];
+
+  public function menu() {
+    return $this->belongsTo('App\Menu');
+  }
 }

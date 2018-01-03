@@ -10,4 +10,8 @@ class Menu extends Model
     protected $fillable = [
       'title'
     ];
+
+    public function dishes() {
+      return $this->hasMany('App\Dish');
+    }
 }

@@ -111,12 +111,13 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+      $this->authorize('delete', Dish::class);
+      
       if (!empty($dish->photo)) {
         $oldPath = 'public/images/';
         Storage::delete($oldPath.$dish->photo);
       }
 
-      $this->authorize('delete', Dish::class);
       $dish->delete();
       return redirect('admin/dish');
     }

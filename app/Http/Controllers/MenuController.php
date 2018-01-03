@@ -89,7 +89,11 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
       $this->authorize('delete', Menu::class);
-      $menu->delete();
-      return redirect('admin/menu');
+      if ($menu->dishes->count() == 0) {
+        $menu->delete();
+        return redirect('admin/menu');
+      } else {
+        return redirect('admin/menu')->with(['message' => 'Menu can not be deleted']);
+      }
     }
 }
