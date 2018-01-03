@@ -12,7 +12,7 @@
         <span>{{ $menu->title }}</span>
       </div>
       <div class="pull-right">
-        <a class="btn btn-primary" href="{{route('menu.edit', $menu)}}">Edit</a>
+        <a class="btn btn-primary" href="{{route('menu.edit', $menu)}}" style="margin-right: 5px;">Edit</a>
         <form action="{{ route('menu.destroy', $menu) }}" method="POST"
          style="display: inline"
          onsubmit="return confirm('Are you sure?');">

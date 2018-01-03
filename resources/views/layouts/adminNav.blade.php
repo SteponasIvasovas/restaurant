@@ -60,7 +60,7 @@
             <div class="absolute-wrapper"> </div>
             <!-- Menu -->
             <div class="side-menu">
-                <nav class="navbar navbar-default" role="navigation">
+                <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0px;">
                     <!-- Main Menu -->
                     <div class="side-menu-container">
                         <ul class="nav navbar-nav">

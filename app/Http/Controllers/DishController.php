@@ -6,6 +6,8 @@ use App\Dish;
 use App\Menu;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDishRequest;
+//image failo direktorija
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -39,15 +41,15 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
+      $path = $request->file('photo')->store('public/images');
       $dish = new Dish();
       $dish->title = $request->title;
-      $path = $request->file('photo')->store('public/images');
       $dish->photo = basename($path);
       $dish->description = $request->description;
-      $dish->price = $reuqest->price;
+      $dish->price = $request->price;
       $dish->menu_id = $request->menu_id;
       $dish->save();
-      return redirect('admin/dish')->(['message' => 'Dish added successfully']);
+      return redirect('admin/dish')->with(['message' => 'Dish added successfully']);
     }
 
     /**
@@ -69,7 +71,8 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-      return view('admin.dish.edit', compact('dish'));
+      $menus = Menu::all();
+      return view('admin.dish.edit', compact('dish'), compact('menus'));
     }
 
     /**
@@ -81,7 +84,15 @@ class DishController extends Controller
      */
     public function update(StoreDishRequest $request, Dish $dish)
     {
-      $dish->update($request->all());
+      $dish->title = $request->title;
+      if ($request->photo != null) {
+        $path = $request->file('photo')->store('public/images');
+        $dish->photo = basename($path);
+      }
+      $dish->description = $request->description;
+      $dish->price = $request->price;
+      $dish->menu_id = $request->menu_id;
+      $dish->update();
       return redirect('admin/dish')->with(['message' => 'Dish successfuly edited']);
     }
 
@@ -93,7 +104,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-      $menu->delete();
+      $dish->delete();
       return redirect('admin/dish');
     }
 }
