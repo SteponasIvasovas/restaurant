@@ -2,7 +2,16 @@
 @extends ('layouts.admin')
 
 @section('content')
+
+
 <form class="col-md-8" action="{{route('dish.update', $dish)}}" method="post" enctype="multipart/form-data">
+  @if ($errors->count() > 0)
+    <ul style="padding-left: 0px;">
+      @foreach($errors->all() as $error)
+        <li class="alert alert-info" style="list-style: none;">{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
   <!-- apsauga -->
   {{ csrf_field() }}
   {{ method_field('put') }}

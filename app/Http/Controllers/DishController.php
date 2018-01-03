@@ -29,6 +29,7 @@ class DishController extends Controller
      */
     public function create()
     {
+      $this->authorize('create', Dish::class);
       $menus = Menu::all();
       return view('admin.dish.create', compact('menus'));
     }
@@ -71,6 +72,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+      $this->authorize('update', Dish::class);
       $menus = Menu::all();
       return view('admin.dish.edit', compact('dish'), compact('menus'));
     }
@@ -85,10 +87,15 @@ class DishController extends Controller
     public function update(StoreDishRequest $request, Dish $dish)
     {
       $dish->title = $request->title;
+
       if ($request->photo != null) {
+        //artisane reikia palinkint storage
+        $oldPath = 'public/images/';
+        Storage::delete($oldPath.$dish->photo);
         $path = $request->file('photo')->store('public/images');
         $dish->photo = basename($path);
       }
+
       $dish->description = $request->description;
       $dish->price = $request->price;
       $dish->menu_id = $request->menu_id;
@@ -104,6 +111,12 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+      if (!empty($dish->photo)) {
+        $oldPath = 'public/images/';
+        Storage::delete($oldPath.$dish->photo);
+      }
+
+      $this->authorize('delete', Dish::class);
       $dish->delete();
       return redirect('admin/dish');
     }
