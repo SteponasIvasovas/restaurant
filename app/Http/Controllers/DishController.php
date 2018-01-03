@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dish;
+use App\Menu;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDishRequest;
 
@@ -26,7 +27,8 @@ class DishController extends Controller
      */
     public function create()
     {
-      return view('admin.dish.create');
+      $menus = Menu::all();
+      return view('admin.dish.create', compact('menus'));
     }
 
     /**
@@ -37,8 +39,15 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
-      Menu::create($request->all());
-      return redirect('admin/dish');
+      $dish = new Dish();
+      $dish->title = $request->title;
+      $path = $request->file('photo')->store('public/images');
+      $dish->photo = basename($path);
+      $dish->description = $request->description;
+      $dish->price = $reuqest->price;
+      $dish->menu_id = $request->menu_id;
+      $dish->save();
+      return redirect('admin/dish')->(['message' => 'Dish added successfully']);
     }
 
     /**

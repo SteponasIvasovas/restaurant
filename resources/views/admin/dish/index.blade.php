@@ -9,7 +9,10 @@
     @foreach($dishes as $dish)
     <li class="list-group-item clearfix">
       <div class="pull-left">
-        <span>{{ $dish->title }}</span>
+        <img src="{{asset('images/'.$dish->photo)}}" alt="no-image-available">
+        <p>{{ $dish->title }}</p>
+        <p>{{ $dish->description }}</p>
+        <p>{{ $dish->price }}</p>
       </div>
       <div class="pull-right">
         <a class="btn btn-primary" href="{{route('dish.edit', $dish)}}">Edit</a>
