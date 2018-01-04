@@ -1,5 +1,5 @@
 <?php
-
+// .env faile pridejo username, passworda, mail, ir name
 return [
 
     /*
