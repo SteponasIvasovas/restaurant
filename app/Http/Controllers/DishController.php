@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use App\Menu;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDishRequest;
 //image failo direktorija
@@ -18,6 +19,7 @@ class DishController extends Controller
      */
     public function index()
     {
+      // $dishes = DB::table('dishes')->paginate(15);
       $dishes = Dish::all();
       return view('admin.dish.index', compact('dishes'));
     }
@@ -95,7 +97,7 @@ class DishController extends Controller
         if(!empty($dish->photo)) {
           Storage::delete($oldPath.$dish->photo);
         }
-        
+
         $path = $request->file('photo')->store('public/images');
         $dish->photo = basename($path);
       }

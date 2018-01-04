@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 })->name("welcome");
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/reservation', 'ReservationController@create')->name('reservation.create');
 
 
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima

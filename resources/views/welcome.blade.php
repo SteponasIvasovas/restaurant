@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('dish.index')}}">Dishes</a>
+                    <a href="{{route('home')}}">Dishes</a>
                 </div>
             </div>
         </div>
