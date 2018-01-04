@@ -18,7 +18,8 @@ Route::get('/welcome', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/reservation', 'ReservationController@create')->name('reservation.create');
+Route::get('/reservation', 'ReservationController@create')->name('reservation.create')->middleware('auth');
+Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
 
 
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima

@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+  @if (session('message'))
+    <p class="alert alert-info">{{ session('message') }}</p>
+  @endif
       <ul class="list-group">
         @for ($i = 0; $i < 4; $i++)
           <div class="col-md-3" style="padding: 0">

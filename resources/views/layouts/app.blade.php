@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
     <div id="app">
@@ -36,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{route('reservation')}}">Reservation</a></li>
+                        <li><a href="{{route('reservation.create')}}">Reservation</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

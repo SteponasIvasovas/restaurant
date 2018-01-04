@@ -78,9 +78,9 @@
                                 <div id="dropdown-lvl1" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
+                                          @foreach($users as $user)
+                                            <li><a href="#">{{$user->name}}</a></li>
+                                          @endforeach
                                         </ul>
                                     </div>
                                 </div>
