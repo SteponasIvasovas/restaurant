@@ -91,7 +91,11 @@ class DishController extends Controller
       if ($request->photo != null) {
         //artisane reikia palinkint storage
         $oldPath = 'public/images/';
-        Storage::delete($oldPath.$dish->photo);
+
+        if(!empty($dish->photo)) {
+          Storage::delete($oldPath.$dish->photo);
+        }
+        
         $path = $request->file('photo')->store('public/images');
         $dish->photo = basename($path);
       }
@@ -112,7 +116,7 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
       $this->authorize('delete', Dish::class);
-      
+
       if (!empty($dish->photo)) {
         $oldPath = 'public/images/';
         Storage::delete($oldPath.$dish->photo);

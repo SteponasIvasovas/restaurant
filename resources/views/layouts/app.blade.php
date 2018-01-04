@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style1.css')}}">
 </head>
 <body>
     <div id="app">
@@ -53,6 +54,9 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        @if (Auth::user()->admin)
+                                        <a href="{{route('admin')}}">Admin panel</a>
+                                        @endif
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -12,7 +12,7 @@
       @endif
       <li class="list-group-item col-md-3 clearfix" style="">
         <div class="text-justified">
-          <img src="/storage/images/{{$dish->photo}}" alt="no-image-available" style="width: 100%; max-height: 100px; border-radius: 100%;">
+          <img src="/storage/images/{{$dish->photo}}" alt="no-image-available" style="width: 100%; max-height: 200px; border-radius: 100%;">
           <h2>{{ $dish->title }}</h2>
           <p>{{ $dish->description }}</p>
           <p>Price : {{ $dish->price }} Bitcoinai</p>

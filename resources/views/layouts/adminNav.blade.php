@@ -11,8 +11,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                Administrator
+            <a class="navbar-brand" href="{{route('admin')}}">
+              Admin panel
             </a>
         </div>
 
@@ -25,7 +25,7 @@
                 <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="" target="_blank">Visit Site</a></li>
+                <li><a href="{{route('home')}}">Visit site</a></li>
                 <li class="dropdown ">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Name
