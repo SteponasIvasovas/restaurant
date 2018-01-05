@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\Mail\ReservationAccept;
+use App\Mail\ReservationAdminMail;
+use App\Http\Requests\StoreReservationRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreReservationRequest;
 
 class ReservationController extends Controller
 {
@@ -22,6 +23,7 @@ class ReservationController extends Controller
       $reservation->date = $request->date;
       $reservation->save();
       Mail::to($request->user())->send(new ReservationAccept($reservation));
+      Mail::to('steponas@hotmail.com')->send(new ReservationAdminMail($reservation));
       return redirect('/')->with(['message' => 'Reservation successful']);
     }
 }

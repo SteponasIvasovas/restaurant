@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReservationAccept extends Mailable
+class ReservationAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,10 +30,10 @@ class ReservationAccept extends Mailable
      */
     public function build()
     {
-        return $this->view('email.reservation')->with([
+        return $this->view('email.admin')->with([
           'date' => $this->reservation->date,
-          'time'=> $this->reservation->time,
-          'count'=> $this->reservation->person_count,
-          'name' => $this->reservation->user->name]);
+          'time'=>$this->reservation->time,
+          'count'=>$this->reservation->person_count,
+          'name' =>$this->reservation->user->name]);
     }
 }
