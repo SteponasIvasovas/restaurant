@@ -44,11 +44,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="dish-photo-old" class="control-label col-sm-12">Current image</label>
-    <div class="col-sm-10">
-      <img src="/storage/images/{{$dish->photo}}" alt="no-image-available" style="max-height: 100px;">
-      <input id="dish-photo-old" class="form-control-file" type="hidden" name="photo-old" value="{{$dish->photo}}">
-    </div>
+    <label class="control-label col-sm-12">Current image : {{$dish->photo}}</label>
   </div>
   <div class="form-group">
     <label for="dish-photo" class="control-label col-sm-12">Change image file</label>

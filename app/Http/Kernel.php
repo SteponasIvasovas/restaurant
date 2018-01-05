@@ -57,7 +57,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        //prideta eilute patikrinimas ar adminas routuose naudojama
+        //prideta eilute patikrinimas ar adminas routuose naudojamas
         'admin' => \App\Http\Middleware\IsAdmin::class,
     ];
 }

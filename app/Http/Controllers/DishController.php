@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use App\Menu;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDishRequest;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Input;
 //image failo direktorija
 use Illuminate\Support\Facades\Storage;
 
@@ -44,10 +47,13 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
-      $path = $request->file('photo')->store('public/images');
+      $name = $request->file('photo')->getClientOriginalName();
+      $timestamp = Carbon::now()->toAtomString();
+      $request->file('photo')->storeAs('public/images', $timestamp.$name );
+      // Image::make(Input::file('photo'))->resize(100, 100)->save(storage_path('app/public/images/'.$timestamp.$name));
       $dish = new Dish();
       $dish->title = $request->title;
-      $dish->photo = basename($path);
+      $dish->photo = $timestamp.$name;
       $dish->description = $request->description;
       $dish->price = $request->price;
       $dish->menu_id = $request->menu_id;
@@ -98,8 +104,13 @@ class DishController extends Controller
           Storage::delete($oldPath.$dish->photo);
         }
 
-        $path = $request->file('photo')->store('public/images');
-        $dish->photo = basename($path);
+        $name = $request->file('photo')->getClientOriginalName();
+        $timestamp = Carbon::now()->toAtomString();
+        $request->file('photo')->storeAs('public/images', $timestamp.$name );
+        // $img = Image::make(Input::file('photo'))->resize(100, 100);
+        // $img->pixelate(12);
+        $img->save(storage_path('app/public/images/'.$timestamp.$name));
+        $dish->photo = $timestamp.$name;
       }
 
       $dish->description = $request->description;
