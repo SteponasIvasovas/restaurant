@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/reservation', 'ReservationController@create')->name('reservation.create')->middleware('auth');
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
-
+Route::post('/cart', 'CartController@ajaxAdd')->name('cart.add');
 
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){

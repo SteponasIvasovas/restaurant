@@ -109,7 +109,7 @@ class DishController extends Controller
         $request->file('photo')->storeAs('public/images', $timestamp.$name );
         // $img = Image::make(Input::file('photo'))->resize(100, 100);
         // $img->pixelate(12);
-        $img->save(storage_path('app/public/images/'.$timestamp.$name));
+        // $img->save(storage_path('app/public/images/'.$timestamp.$name));
         $dish->photo = $timestamp.$name;
       }
 

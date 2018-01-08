@@ -17,7 +17,7 @@
                 <p>{{ $dish->description }}</p>
                 <p>Price : {{ $dish->price }} Bitcoinai</p>
               </div>
-              <a href="" class="btn btn-block btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbspAdd to cart</a>
+              <a href="#" data-id="{{$dish->id}}" class="cart btn btn-block btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbspAdd to cart</a>
             </li>
             @endif
           @endforeach
@@ -28,4 +28,36 @@
 <div class="text-center">
   {{$dishes->links()}}
 </div>
+<script
+     src="https://code.jquery.com/jquery-3.2.1.min.js"
+     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+     crossorigin="anonymous">
+   </script>
+
+   <script type="text/javascript">
+     $(document).ready(function () {
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+       $('a.cart').click(function () {
+         var dish_id = $(this).data('id');
+         var url = "/cart";
+         console.log(dish_id);
+         $.ajax({
+           type: "POST",
+           url: url,
+           data: {id : dish_id},
+           dataType: "json",
+           success: function (data) {
+             console.log(data);
+           },
+           error: function (data) {
+             console.log('Error');
+           }
+         })
+       });
+     });
+   </script>
 @endsection
