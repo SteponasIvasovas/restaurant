@@ -26,9 +26,19 @@ class Cart
       }
 
       $storeItem['qty']++;
-      $storeItem['price'] = $storeItem['qty'] * $dish->price;
+      $storeItem['price'] = $dish->price;
       $this->items[$dish->id] = $storeItem;
       $this->totalQty++;
-      $this->totalPrice+= $dish->price;
+      $this->totalPrice += $dish->price;
+    }
+
+    public function deleteByOne($dish, $id) {
+      $this->totalQty--;
+      $this->totalPrice -= $dish->price;
+      $quantity = $this->items[$dish->id]['qty']--;
+
+      if ($quantity == 0) {
+        unset($this->items[$dish_id]);
+      }
     }
 }

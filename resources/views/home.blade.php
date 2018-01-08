@@ -43,7 +43,7 @@
        });
        $('a.cart').click(function () {
          var dish_id = $(this).data('id');
-         var url = "/cart";
+         var url = "/cart/add";
          console.log(dish_id);
          $.ajax({
            type: "POST",

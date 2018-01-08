@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function index() {
+      $cart = Session::has('cart') ? Session::get('cart') : null;
+      return view('cart.index', compact('cart'));
+    }
+
     public function ajaxAdd(Request $request) {
       $id = $request->id;
       $dish = Dish::findOrFail($id);
@@ -19,4 +24,8 @@ class CartController extends Controller
       $request->session()->put('cart', $cart);// galima ir taip rasyti Session::put('cart', $cart);
       echo json_encode($cart);// arba  return json_encode($cart);
     }
+
+    
+
+
 }
