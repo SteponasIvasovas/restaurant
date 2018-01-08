@@ -12,12 +12,8 @@ class CartController extends Controller
     public function ajaxAdd(Request $request) {
       $id = $request->id;
       $dish = Dish::findOrFail($id);
-      $oldCart = Session::has('cart') ? Session::get('cart') : null; //? - reiskia if
-        // if(Session::has('cart')) {
-        //   $oldCart = Session::get('cart');
-        // }else {
-        //   $oldCart = null;
-        // }
+      // $request->session()->flush();
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
       $cart->add($dish, $id);
       $request->session()->put('cart', $cart);// galima ir taip rasyti Session::put('cart', $cart);

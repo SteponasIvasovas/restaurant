@@ -51,7 +51,8 @@
            data: {id : dish_id},
            dataType: "json",
            success: function (data) {
-             console.log(data);
+             $('#cart-id span').html(data.totalQty);
+             console.log(data.totalQty);
            },
            error: function (data) {
              console.log('Error');

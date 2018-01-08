@@ -4,7 +4,7 @@ namespace App;
 
 class Cart
 {
-    public $items=null;
+    public $items;
     public $totalQty;
     public $totalPrice;
 
@@ -17,16 +17,18 @@ class Cart
     }
 
     public function add($dish, $id) {
-      $storeItem = ['qty'=>0, 'price'=>$dish->price, 'item'=>$dish];
+      $storeItem = ['qty' => 0, 'price' => $dish->price, 'item' => $dish];
       if($this->items) {
-        //tikrinam ar yra preke krepselyje
-        if(array_key_exists($id, $this->items[$dish->id])) {
+      //tikrinam ar yra preke krepselyje
+        if(array_key_exists($id, $this->items)) {
           $storeItem = $this->items[$dish->id];
         }
       }
-       $storeItem['qty']++;
-       $storeItem['price']=$storeItem['qty']*$dish->price;
-       $this->totalQty++;
-       $this->totalPrice+= $dish->price;
+
+      $storeItem['qty']++;
+      $storeItem['price'] = $storeItem['qty'] * $dish->price;
+      $this->items[$dish->id] = $storeItem;
+      $this->totalQty++;
+      $this->totalPrice+= $dish->price;
     }
 }

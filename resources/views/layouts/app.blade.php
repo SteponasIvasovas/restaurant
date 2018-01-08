@@ -38,6 +38,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{route('reservation.create')}}">Reservation</a></li>
+                        <li><a id="cart-id" href="#">Cart&nbsp(<span style="line-height: 22px;">
+                          @if (Session::has('cart'))
+                            {{Session::get('cart')->totalQty}}
+                          @else
+                            0
+                          @endif
+                        </span>)</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
