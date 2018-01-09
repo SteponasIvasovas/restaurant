@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Cart' => $baseDir . '/app/Cart.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Dish' => $baseDir . '/app/Dish.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -14,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+    'App\\Http\\Controllers\\CartController' => $baseDir . '/app/Http/Controllers/CartController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DishController' => $baseDir . '/app/Http/Controllers/DishController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
@@ -32,6 +34,7 @@ return array(
     'App\\Mail\\ReservationAccept' => $baseDir . '/app/Mail/ReservationAccept.php',
     'App\\Mail\\ReservationAdminMail' => $baseDir . '/app/Mail/ReservationAdminMail.php',
     'App\\Menu' => $baseDir . '/app/Menu.php',
+    'App\\Order' => $baseDir . '/app/Order.php',
     'App\\Policies\\DishPolicy' => $baseDir . '/app/Policies/DishPolicy.php',
     'App\\Policies\\MenuPolicy' => $baseDir . '/app/Policies/MenuPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

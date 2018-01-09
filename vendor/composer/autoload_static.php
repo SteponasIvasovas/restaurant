@@ -339,6 +339,7 @@ class ComposerStaticInite12caa7f9bddfc2a74b9fbb50985fd2a
     );
 
     public static $classMap = array (
+        'App\\Cart' => __DIR__ . '/../..' . '/app/Cart.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Dish' => __DIR__ . '/../..' . '/app/Dish.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -347,6 +348,7 @@ class ComposerStaticInite12caa7f9bddfc2a74b9fbb50985fd2a
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DishController' => __DIR__ . '/../..' . '/app/Http/Controllers/DishController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -365,6 +367,7 @@ class ComposerStaticInite12caa7f9bddfc2a74b9fbb50985fd2a
         'App\\Mail\\ReservationAccept' => __DIR__ . '/../..' . '/app/Mail/ReservationAccept.php',
         'App\\Mail\\ReservationAdminMail' => __DIR__ . '/../..' . '/app/Mail/ReservationAdminMail.php',
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
+        'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
         'App\\Policies\\DishPolicy' => __DIR__ . '/../..' . '/app/Policies/DishPolicy.php',
         'App\\Policies\\MenuPolicy' => __DIR__ . '/../..' . '/app/Policies/MenuPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

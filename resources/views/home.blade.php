@@ -44,7 +44,6 @@
        $('a.cart').click(function () {
          var dish_id = $(this).data('id');
          var url = "/cart/add";
-         console.log(dish_id);
          $.ajax({
            type: "POST",
            url: url,
@@ -52,7 +51,7 @@
            dataType: "json",
            success: function (data) {
              $('#cart-id span').html(data.totalQty);
-             console.log(data.totalQty);
+            //  console.log(data.totalQty);
            },
            error: function (data) {
              console.log('Error');

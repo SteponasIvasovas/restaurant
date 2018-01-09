@@ -4,9 +4,9 @@ namespace App;
 
 class Cart
 {
-    public $items;
-    public $totalQty;
-    public $totalPrice;
+    public $items = array();
+    public $totalQty = 0;
+    public $totalPrice = 0;
 
     public function __construct($oldCart) {
       if($oldCart) {
@@ -32,13 +32,19 @@ class Cart
       $this->totalPrice += $dish->price;
     }
 
-    public function deleteByOne($dish, $id) {
+    public function deleteByOne($id) {
       $this->totalQty--;
-      $this->totalPrice -= $dish->price;
-      $quantity = $this->items[$dish->id]['qty']--;
+      $this->totalPrice -= $this->items[$id]['price'];
+      $quantity = --$this->items[$id]['qty'];
 
       if ($quantity == 0) {
-        unset($this->items[$dish_id]);
+        unset($this->items[$id]);
       }
+    }
+
+    public function deleteAll($id) {
+      $this->totalQty -= $this->items[$id]['qty'];
+      $this->totalPrice -= ($this->items[$id]['qty'] * $this->items[$id]['price']);
+      unset($this->items[$id]);
     }
 }

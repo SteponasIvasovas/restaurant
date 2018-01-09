@@ -22,6 +22,13 @@ Route::get('/reservation', 'ReservationController@create')->name('reservation.cr
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
 Route::post('/cart/add', 'CartController@ajaxAdd')->name('cart.add');
 Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart/{id}', 'CartController@deleteByOne')->name('cart.deleteByOne');
+Route::post('/cart/deleteAll', 'CartController@deleteAll')->name('cart.deleteAll');
+Route::post('/cart/deleteCart', 'CartController@deleteCart')->name('cart.deleteCart');
+Route::get('/order', 'OrderController@index')->name('order');
+Route::post('/order/store', 'OrderController@store')->name('order.store');
+
+
 
 
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima
