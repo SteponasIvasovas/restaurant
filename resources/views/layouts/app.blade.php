@@ -37,14 +37,18 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{route('reservation.create')}}">Reservation</a></li>
-                        <li><a id="cart-id" href="{{route('cart')}}">Cart&nbsp(<span style="line-height: 22px;">
+                        <li><a href="{{route('reservation.create')}}">Reservate</a></li>
+                        <li>
+                          <a id="cart-id" href="{{route('cart')}}">Cart&nbsp(<span style="line-height: 22px;">
                           @if (Session::has('cart'))
                             {{Session::get('cart')->totalQty}}
                           @else
                             0
                           @endif
-                        </span>)</a></li>
+                          </span>)
+                          </a>
+                        </li>
+                        <li><a href="{{route('order')}}">Orders</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

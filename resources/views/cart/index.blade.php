@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-  @if ($cart != null)
     <table class="table">
       <thead>
         <tr>
@@ -15,36 +14,43 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($cart->items as $items)
-          <tr id="item-{{$items['item']['id']}}">
-            <td>{{$items['item']['title']}}</td>
-            <td>Price : <span id="price-{{$items['item']['id']}}">{{$items['price']}}</span> Bitcoinai</td>
-            <td>Quantity : <span id="quantity-{{$items['item']['id']}}">{{$items['qty']}}</span></td>
-            <td>Total price : <span id="total-{{$items['item']['id']}}">{{$items['qty'] * $items['price']}}</span> Bitcoinai</td>
-            <td>
-              <a id="delete-one" class="delete-one btn btn-warning" data-id="{{$items['item']['id']}}">Delete by one</a>
-              <a id="delete-all" class="delete-all btn btn-warning" data-id="{{$items['item']['id']}}">Delete all</a>
+        @if ($cart != null)
+          @foreach ($cart->items as $items)
+            <tr id="item-{{$items['item']['id']}}">
+              <td>{{$items['item']['title']}}</td>
+              <td><span id="price-{{$items['item']['id']}}">{{$items['price']}}</span> Bitcoinai</td>
+              <td><span id="quantity-{{$items['item']['id']}}">{{$items['qty']}}</span></td>
+              <td><span id="total-{{$items['item']['id']}}">{{$items['qty'] * $items['price']}}</span> Bitcoinai</td>
+              <td>
+                <a id="delete-one" class="delete-one btn btn-warning" data-id="{{$items['item']['id']}}">Delete by one</a>
+                <a id="delete-all" class="delete-all btn btn-warning" data-id="{{$items['item']['id']}}">Delete all</a>
+              </td>
+            </tr>
+          @endforeach
+          <tr>
+            <td colspan="5" class="text-right">Total ordered : <span id="total-qty">{{$cart->totalQty}}</span></td>
+          </tr>
+          <tr><td colspan="5" class="text-right">Total price : <span id="total-price">{{$cart->totalPrice}} Bitcoinai</span></td></tr>
+          <tr>
+            <td colspan="5">
+              <form action="{{route('cart.deleteCart')}}" method="POST"
+              style="display: inline"
+              onsubmit="return confirm('Are you sure you want to delete cart????');">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-danger pull-right">Delete</button>
+              </form>
+              <form action="{{route('order.store')}}" method="POST"
+              style="display: inline">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-danger pull-right">Checkout</button>
+              </form>
             </td>
           </tr>
-        @endforeach
+          @else
+            <tr><td>Cart is empty</td></tr>
+          @endif
       </tbody>
     </table>
-    <p>Total ordered : <span id="total-qty">{{$cart->totalQty}}</span></p>
-    <p>Total price : <span id="total-price">{{$cart->totalPrice}} Bitcoinai</span></p>
-    <form action="{{route('cart.deleteCart')}}" method="POST"
-     style="display: inline"
-     onsubmit="return confirm('Are you sure you want to delete cart????');">
-      {{ csrf_field() }}
-      <button type="submit" class="btn btn-danger pull-right">Delete</button>
-    </form>
-    <form action="{{route('order.store')}}" method="POST"
-     style="display: inline">
-      {{ csrf_field() }}
-      <button type="submit" class="btn btn-danger pull-right">Checkout</button>
-    </form>
-  @else
-    <p>Cart is empty</p>
-  @endif
 </div>
 <script
      src="https://code.jquery.com/jquery-3.2.1.min.js"
