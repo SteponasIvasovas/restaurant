@@ -28,12 +28,24 @@ Route::post('/cart/deleteCart', 'CartController@deleteCart')->name('cart.deleteC
 Route::get('/order', 'OrderController@index')->name('order');
 Route::post('/order/store', 'OrderController@store')->name('order.store');
 
-
-
-
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){
   Route::get('/', 'AdminController@index')->name('admin');
   Route::resource('/menu', 'MenuController');
   Route::resource('/dish', 'DishController');
+});
+Route::get('storage/images/{filename}', function ($filename)
+{
+    $path = storage_path('app/public/images/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
 });

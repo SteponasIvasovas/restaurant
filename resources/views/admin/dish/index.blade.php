@@ -12,7 +12,7 @@
         @if (($loop->iteration + 3) % 4 == $i)
         <li class="list-group-item col-md-12 clearfix" style="">
           <div class="text-justify">
-            <img src="/storage/images/{{$dish->photo}}" alt="no-image-available" style="width: 100%; border-radius: 100%;">
+            <img src="/storage/images/{{$dish->photo)}}" alt="no-image-available" style="width: 100%; border-radius: 100%;">
             <h2>{{ $dish->title }}</h2>
             <p>Price&nbsp:&nbsp{{ $dish->price }}&nbspBitcoinai</p>
             <div class="pull-right" style="margin-top: 20px">

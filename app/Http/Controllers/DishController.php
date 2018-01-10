@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use App\Menu;
+use App\Http\Requests\StoreDishRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreDishRequest;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Input;
 //image failo direktorija
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class DishController extends Controller
 {
@@ -23,6 +23,7 @@ class DishController extends Controller
     public function index()
     {
       // $dishes = DB::table('dishes')->paginate(15);
+
       $dishes = Dish::all();
       return view('admin.dish.index', compact('dishes'));
     }
@@ -49,11 +50,12 @@ class DishController extends Controller
     {
       $name = $request->file('photo')->getClientOriginalName();
       $timestamp = Carbon::now()->toAtomString();
-      $request->file('photo')->storeAs('public/images', $timestamp.$name );
+      $request->file('photo')->storeAs('public/images', $name );
       // Image::make(Input::file('photo'))->resize(100, 100)->save(storage_path('app/public/images/'.$timestamp.$name));
       $dish = new Dish();
       $dish->title = $request->title;
-      $dish->photo = $timestamp.$name;
+      // $dish->photo = $timestamp.$name;
+      $dish->photo = $name;
       $dish->description = $request->description;
       $dish->price = $request->price;
       $dish->menu_id = $request->menu_id;
@@ -94,6 +96,7 @@ class DishController extends Controller
      */
     public function update(StoreDishRequest $request, Dish $dish)
     {
+
       $dish->title = $request->title;
 
       if ($request->photo != null) {
@@ -106,11 +109,11 @@ class DishController extends Controller
 
         $name = $request->file('photo')->getClientOriginalName();
         $timestamp = Carbon::now()->toAtomString();
-        $request->file('photo')->storeAs('public/images', $timestamp.$name );
-        // $img = Image::make(Input::file('photo'))->resize(100, 100);
-        // $img->pixelate(12);
-        // $img->save(storage_path('app/public/images/'.$timestamp.$name));
-        $dish->photo = $timestamp.$name;
+        // $request->file('photo')->storeAs('public/images', $name );
+        $img = Image::make(Input::file('photo'));
+        $img->pixelate(12);
+        $img->save(storage_path('app/public/images/'.$name));
+        $dish->photo = $name;
       }
 
       $dish->description = $request->description;
