@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Menu;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //nurodom kad kintamasis menus visada butu aptinkamas layouts.app
+        view()->composer('layouts.app', function($view) {
+          $menus = \App\Menu::all();
+          $view->with(compact('menus'));
+        });
     }
 
     /**

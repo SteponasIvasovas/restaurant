@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dish;
+use App\Menu;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+      // $menus = Menu::all();
       $dishes = Dish::paginate(8);
-      return view('home', compact('dishes'));
+      return view('home', compact('menus'), compact('dishes'));
     }
 }

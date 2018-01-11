@@ -19,16 +19,22 @@ Auth::routes();
 
 Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social.login');
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/reservation', 'ReservationController@create')->name('reservation.create')->middleware('auth');
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
+
 Route::post('/cart/add', 'CartController@ajaxAdd')->name('cart.add');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/{id}', 'CartController@deleteByOne')->name('cart.deleteByOne');
 Route::post('/cart/deleteAll', 'CartController@deleteAll')->name('cart.deleteAll');
 Route::post('/cart/deleteCart', 'CartController@deleteCart')->name('cart.deleteCart');
+
 Route::get('/order', 'OrderController@index')->name('order');
 Route::post('/order/store', 'OrderController@store')->name('order.store');
+
+Route::post('/search', 'SearchController@search')->name('search');
 
 //'middleware' => ['auth', 'admin'] - nuoroda i Kernel.php routeMiddleware apdorojima
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(){
