@@ -17,6 +17,8 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social.login');
+Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/reservation', 'ReservationController@create')->name('reservation.create')->middleware('auth');
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
@@ -34,6 +36,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function(
   Route::resource('/menu', 'MenuController');
   Route::resource('/dish', 'DishController');
 });
+
 Route::get('storage/images/{filename}', function ($filename)
 {
     $path = storage_path('app/public/images/' . $filename);

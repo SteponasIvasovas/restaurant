@@ -34,5 +34,16 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'github' => [
+      'client_id' => env('GITHUB_CLIENT_ID'),         // Your github Client ID
+      'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your github Client Secret
+      'redirect' => env('GITHUB_URL'),
+    ],
+    'facebook' => [
+      'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your facebook Client ID
+      'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your facebook Client Secret
+      'redirect' => env('GITHUB_URL'),
+    ],
+
 
 ];

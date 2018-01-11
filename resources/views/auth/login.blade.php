@@ -55,9 +55,17 @@
                                     Login
                                 </button>
 
+
+                                <a class="btn btn-link" href="{{route('social.login', 'github')}}">
+                                  Login with github
+                                </a>
+                                <a class="btn btn-link" href="{{route('social.login', 'facebook')}}">
+                                  Login with facebook
+                                </a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
+
                             </div>
                         </div>
                     </form>
